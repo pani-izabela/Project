@@ -15,10 +15,12 @@ public class TaskController {
     public List<TaskDto> getTasks(){
         return new ArrayList<>();
     };
+
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
     public TaskDto getTask(String taskId){
         return new TaskDto("1", "test_title", "test_content");
     };
+
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
     public void deleteTask(String taskId){};
 
