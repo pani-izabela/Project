@@ -16,19 +16,20 @@ import java.util.List;
 @Component
 public class TrelloClient {
     @Value("${trello.api.endpoint.prod}")
-    private String trelloApiEndpointProd;
+    private String trelloApiEndpoint;
     @Value("${trello.app.key}")
     private String trelloAppKey;
     @Value("${trello.app.token}")
-    private String trelloAppToken;
+    private String trelloToken;
 
     @Autowired
     private RestTemplate restTemplate;
 
     public List<TrelloBoardDto> getTrelloBoards(){
-        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpointProd + "https://api.trello.com/1/members/pani_izabela/boards")
+        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/kodillauser/boards")
                 .queryParam("key", trelloAppKey)
-                .queryParam("token", trelloAppToken).build().encode().toUri();
+                .queryParam("token", trelloToken)
+                .queryParam("fields", "name,id").build().encode().toUri();
        TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
 
         if (boardsResponse != null) {
