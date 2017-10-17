@@ -33,25 +33,22 @@ public class TrelloClientTest {
     @Mock
     private TrelloConfig trelloConfig;
 
-    /*@Before
+    @Before
     public void init(){
         when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
         when(trelloConfig.getTrelloAppKey()).thenReturn("test");
         when(trelloConfig.getTrelloToken()).thenReturn("test");
-    }*/
+    }
 
     @Test
     public void shouldFetchTrelloBoards() throws URISyntaxException {
         //Given
-        when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
-        when(trelloConfig.getTrelloAppKey()).thenReturn("test");
-        when(trelloConfig.getTrelloToken()).thenReturn("test");
 
 
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
         trelloBoards[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
 
-        URI uri = new URI("http://test.com/members/TWOJ_USERNAME_TRELLO/boards?key=test&token=test&fields=name,id&lists=all");
+        URI uri = new URI("http://test.com/members/pani_izabela/boards?key=test&token=test&fields=name,id&lists=all");
 
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoards);
 
@@ -67,7 +64,7 @@ public class TrelloClientTest {
     }
 
     @Test
-    public void shouldCreateCard(){
+    public void shouldCreateCard() throws Exception{
         //Given
         TrelloCardDto trelloCardDto = new TrelloCardDto(
                 "Test task",
