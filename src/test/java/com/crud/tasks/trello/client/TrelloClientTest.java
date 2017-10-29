@@ -92,4 +92,19 @@ public class TrelloClientTest {
 
     }
 
+    @Test
+    public void shouldReturnEmptyList() throws URISyntaxException {
+        //Given
+        URI uri = new URI("http://test.com/members/pani_izabela/boards?key=test&token=test&fields=name,id&lists=all");
+
+        when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(null);
+
+        //When
+        List<TrelloBoardDto> returnedTrelloList = trelloClient.getTrelloBoards();
+
+        //Then
+        assertEquals(0, returnedTrelloList.size());//sprawdza czy została zwrócona odpowiednia ilość obiektów w liście, czyli 0
+
+    }
+
 }
