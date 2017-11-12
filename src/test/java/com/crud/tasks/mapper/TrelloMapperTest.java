@@ -15,11 +15,8 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-@RunWith(MockitoJUnitRunner.class)
-public class TrelloMapperTest {
 
-    @InjectMocks
-    private TrelloMapper trelloMapper;
+public class TrelloMapperTest {
 
     @Test
     public void testMapToBoards() throws Exception {
